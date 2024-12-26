@@ -3,10 +3,12 @@ import { assignUserGrade, formatUserData } from "./transformation.js"
 import { serializeUser } from "./serialization.js"
 
 const processUserData = (userData) => {
+  validateUser(userData)
+  validateEmail(userData)
 
-  const validatedUserData = validateEmail(validateUser(userData));
-  const gradedUserData = assignUserGrade(validatedUserData);
-  const serializedUserData = serializeUser(formatUserData(gradedUserData));
+  const gradedUserData = assignUserGrade(userData);
+  const formatedUserData = formatUserData(gradedUserData)
+  const serializedUserData = serializeUser(formatedUserData);
   return serializedUserData;
 
 }
